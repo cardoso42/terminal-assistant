@@ -1,34 +1,42 @@
-# Ambiente virtual
-.venv/
-venv/
-ENV/
-env/
-
-# Arquivos do modelo (pesados, tipo GGUF)
-*.gguf
-
-# Cache e compilados
-__pycache__/
-*.py[cod]
+# Ignorar arquivos de compilação
+/build/
+*.o
+*.a
 *.so
-*.pyd
-
-# Logs e saídas temporárias
-*.log
+*.dylib
+*.dll
+*.exe
 *.out
-*.tmp
+*.app
 
-# Arquivos do Jupyter
-.ipynb_checkpoints/
+# Arquivos do CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeLists.txt.user
+CMakeLists.txt.obj
+Makefile
+cmake_install.cmake
 
-# VSCode settings
+# Arquivos de IDEs
 .vscode/
+.idea/
+*.swp
 
-# Arquivos do sistema
+# Arquivos temporários e de backup
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Arquivos gerados pelo sistema
 .DS_Store
 Thumbs.db
 
-# Arquivos de autenticação ou configs locais
+# Arquivos do arquivo .env e similares
+.env
+.env.local
 *.env
-.env.*
-token.json
+
+# Arquivos gerados por build em ambientes de desenvolvimento
+*.cmake
+Makefile
