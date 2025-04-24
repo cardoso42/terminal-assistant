@@ -1,0 +1,34 @@
+# Ambiente virtual
+.venv/
+venv/
+ENV/
+env/
+
+# Arquivos do modelo (pesados, tipo GGUF)
+*.gguf
+
+# Cache e compilados
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+
+# Logs e saídas temporárias
+*.log
+*.out
+*.tmp
+
+# Arquivos do Jupyter
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de autenticação ou configs locais
+*.env
+.env.*
+token.json
