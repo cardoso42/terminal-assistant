@@ -1,15 +1,23 @@
-cmake_minimum_required(VERSION 3.14)
-project(DeepSeekTerminalAssistant)
+cmake_minimum_required(VERSION 3.10)
+project(assistant VERSION 1.0)
 
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add executable
-add_executable(assistant main.cpp)
+# Force installation to ~/bin
+set(CMAKE_INSTALL_PREFIX "$ENV{HOME}" CACHE PATH "Installation prefix" FORCE)
 
-# Include path for nlohmann/json (header-only)
-target_include_directories(assistant PRIVATE ${CMAKE_SOURCE_DIR})
-
-# Find libcurl
+# Find required packages
 find_package(CURL REQUIRED)
-target_link_libraries(assistant PRIVATE CURL::libcurl)
+
+# Add subdirectories
+add_subdirectory(src)
+if(BUILD_TESTING)
+    add_subdirectory(tests)
+endif()
+
+# Install rules
+install(DIRECTORY include/
+        DESTINATION include
+        FILES_MATCHING PATTERN "*.hpp")
