@@ -11,9 +11,7 @@ struct CurlDeleter {
     void operator()(CURL* curl) const;
 };
 
-struct CurlSlistDeleter {
-    void operator()(curl_slist* list) const;
-};
+using CurlSlistDeleter = void(*)(curl_slist*);
 
 using CurlPtr = std::unique_ptr<CURL, CurlDeleter>;
 using CurlSlistPtr = std::unique_ptr<curl_slist, CurlSlistDeleter>;

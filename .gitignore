@@ -20,6 +20,7 @@ cmake_install.cmake
 # Arquivos de IDEs
 .vscode/
 .idea/
+cmake-build-*/
 *.swp
 
 # Arquivos temporários e de backup

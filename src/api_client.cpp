@@ -50,13 +50,11 @@ std::string ApiClient::create_payload(std::string_view command) const {
     json payload = {
         {"model", MODEL},
         {"messages", {
-            {
-                {"role", "user"},
-                {"content", std::string(command)}
-            }
+            {{"role", "system"}, {"content", SYSTEM_PROMPT}},
+            {{"role", "user"}, {"content", std::string(command)}}
         }},
-        {"temperature", 0.7},
-        {"max_tokens", 1000}
+        {"temperature", TEMPERATURE},
+        {"max_tokens", MAX_RESPONSE_LENGTH}
     };
     return payload.dump();
 }
@@ -65,7 +63,9 @@ void ApiClient::validate_command(std::string_view command) const {
     if (command.empty()) {
         throw std::invalid_argument("Command cannot be empty");
     }
+
     if (command.length() > MAX_COMMAND_LENGTH) {
-        throw std::invalid_argument("Command exceeds maximum length of " + std::to_string(MAX_COMMAND_LENGTH) + " characters");
+        throw std::invalid_argument("Command exceeds maximum length of " 
+            + std::to_string(MAX_COMMAND_LENGTH) + " characters");
     }
-} 
+}
