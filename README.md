@@ -1,36 +1,34 @@
 # Terminal Assistant (C++)
 
-Um assistente de terminal escrito em C++ que usa a [API do Deepseek](https://deepseek.com/) para responder perguntas e comandos do usuário com foco em terminal Linux.
+A terminal assistant written in C++ that uses the [Deepseek API](https://deepseek.com/) to answer questions and commands with a focus on Linux terminal.
 
-## ✅ Funcionalidades
+## ✅ Features
 
-- Envia comandos e perguntas para a API da Deepseek
-- Retorna a resposta no terminal
-- Uso direto via linha de comando
-- Leitura segura da chave da API via variável de ambiente
+- Sends commands and questions to the Deepseek API
+- Returns the response in the terminal
+- Interactive execution of suggested commands
+- Direct command line usage
+- Currently supports Brazilian Portuguese only
 
 ---
 
-## 📦 Dependências
+## 📦 Dependencies
 
-Você precisa das seguintes bibliotecas:
+You need the following library:
 
-- [libcurl](https://curl.se/libcurl/) - Para fazer requisições HTTP
-- [nlohmann/json](https://github.com/nlohmann/json) - Para manipulação de JSON
+- [libcurl](https://curl.se/libcurl/) - For making HTTP requests
 
-Em sistemas Debian/Ubuntu, você pode instalar com:
+On Debian/Ubuntu systems, you can install it with:
 
 ```bash
 sudo apt install libcurl4-openssl-dev
 ```
 
-E pode adicionar `nlohmann/json` ao seu projeto via vcpkg ou copiando o arquivo `json.hpp`.
-
 ---
 
-## ⚙️ Compilação com CMake
+## ⚙️ Building with CMake
 
-Crie os diretórios e compile:
+Create the directories and build:
 
 ```bash
 mkdir build && cd build
@@ -40,18 +38,23 @@ make
 
 ---
 
-## 🧪 Uso
+## 🧪 Usage
 
-1. **Configure a variável de ambiente** com sua chave da API:
-
-```bash
-export DEEPSEEK_API_KEY="sua_chave_aqui"
-```
-
-Você pode colocar isso no seu `.bashrc`, `.zshrc` ou outro local carregado automaticamente.
-
-2. **Execute o programa** com um comando como argumento:
+1. **Set the environment variable** with your API key:
 
 ```bash
-./assistant "como listar arquivos ocultos no terminal?"
+export DEEPSEEK_API_KEY="your_key_here"
 ```
+
+You can add this to your `.bashrc`, `.zshrc`, or other automatically loaded location.
+
+2. **Run the program** with a command as an argument:
+
+```bash
+./assistant "how to list hidden files in the terminal?"
+```
+
+The program will:
+- Show the assistant's response
+- Ask if you want to execute the suggested command
+- Execute the command if you confirm (by pressing ENTER or Y/y)
