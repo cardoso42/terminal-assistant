@@ -2,6 +2,7 @@
 #include <string>
 #include <string_view>
 #include "api_client.hpp"
+#include "command_executor.hpp"
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
@@ -15,6 +16,11 @@ int main(int argc, char* argv[]) {
         std::string_view command = argv[1];
         std::string answer = client.get_response(command);
         std::cout << answer << std::endl;
+
+        if (!CommandExecutor::prompt_and_execute(answer)) {
+            std::cerr << "Error executing command" << std::endl;
+            return 1;
+        }
     }
     catch (const std::invalid_argument& e) {
         std::cerr << "Input error: " << e.what() << std::endl;

@@ -3,6 +3,7 @@ add_executable(assistant
     main.cpp
     api_client.cpp
     curl_client.cpp
+    command_executor.cpp
 )
 
 # Include directories
