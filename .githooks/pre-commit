@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Get the project root directory
+PROJECT_ROOT=$(git rev-parse --show-toplevel)
+
+# Check if we have C++ files staged
+FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E "\.(cpp|hpp|h|c)$")
+if [ -z "$FILES" ]; then
+    exit 0
+fi
+
+# Check if clang-format is installed
+if ! command -v clang-format &> /dev/null; then
+    echo "Error: clang-format is not installed"
+    exit 1
+fi
+
+# Format each staged file
+for FILE in $FILES; do
+    if [ -f "$FILE" ]; then
+        echo "Formatting $FILE..."
+        clang-format -i "$FILE"
+    fi
+done
+
+# Add all formatted files back to staging
+echo "Adding formatted files to staging area..."
+git add ${FILES}
+
+exit 0 
